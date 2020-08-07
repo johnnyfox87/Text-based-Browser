@@ -53,8 +53,6 @@ topics:
   1:
   - title: Files
     theory_id: 6989
-  - title: Computer programming
-    theory_id: 8739
   - title: IDE
     theory_id: 3805
   - title: Quotes and multi-line strings
@@ -108,6 +106,8 @@ topics:
     theory_id: 5161
   - title: Stack
     theory_id: 5252
+  - title: Computer programming
+    theory_id: 8739
   - title: Intro to computational thinking
     theory_id: 8742
   - title: Components of computational thinking

@@ -143,6 +143,19 @@ files:
     \ Tuesday, a signal of the strong ties between the Silicon Valley giants.\n'''\n\
     \n# write your code here\n"
   learner_created: false
+- name: browser/bloomberg.txt
+  visible: true
+  learner_created: true
+- name: bloomberg.txt
+  visible: true
+  learner_created: true
+- name: browser/pages/bloomberg
+  visible: true
+  learner_created: true
 feedback_link: https://hyperskill.org/projects/79/stages/437/implement
-status: Unchecked
+status: Solved
+feedback:
+  message: Congratulations! Continue on <a href="https://hyperskill.org/projects/79/stages/437/implement">JetBrains
+    Academy</a>
+  time: Fri, 07 Aug 2020 16:05:21 UTC
 record: 2

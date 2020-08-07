@@ -47,6 +47,22 @@ class TextBasedBrowserTest(StageTest):
                 attach=(None, 'Bloomberg', 'New York Times', 'bloomberg'),
                 args=['tb_tabs']
             ),
+            TestCase(
+                stdin='bloomberg.com\nnytimes.com\nback\nexit',
+                attach={
+                    'This New Liquid Is Magnetic, and Mesmerizing': (1, 'New York Times'),
+                    'The Space Race: From Apollo 11 to Elon Musk': (2, 'Bloomberg')
+                },
+                args=['tb_tabs']
+            ),
+            TestCase(
+                stdin='nytimes.com\nbloomberg.com\nback\nexit',
+                attach={
+                    'This New Liquid Is Magnetic, and Mesmerizing': (2, 'New York Times'),
+                    'The Space Race: From Apollo 11 to Elon Musk': (1, 'Bloomberg')
+                },
+                args=['tb_tabs']
+            ),
         ]
 
     def _check_files(self, path_for_tabs: str, right_word: str) -> bool:
@@ -114,6 +130,17 @@ class TextBasedBrowserTest(StageTest):
                 return CheckResult.correct()
 
             return CheckResult.wrong('You printed neither bloomberg_com nor nytimes_com')
+
+        if isinstance(attach, dict):
+            for key, value in attach.items():
+                count, site = value
+                real_count = reply.count(key)
+                if reply.count(key) != count:
+                    return CheckResult.wrong(
+                        f'The site "{site}" should be displayed {count} time(s).\n'
+                        f'Actually displayed: {real_count} time(s).'
+                    )
+            return CheckResult.correct()
 
 
 TextBasedBrowserTest('browser.browser').run_tests()
