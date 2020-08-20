@@ -170,6 +170,13 @@ files:
     \ Tuesday, a signal of the strong ties between the Silicon Valley giants.\n'''\n\
     \n# write your code here\n"
   learner_created: false
+- name: browser/pages/nytimes
+  visible: true
+  learner_created: true
 feedback_link: https://hyperskill.org/projects/79/stages/438/implement
-status: Unchecked
-record: -1
+status: Solved
+feedback:
+  message: Congratulations! Continue on <a href="https://hyperskill.org/projects/79/stages/438/implement">JetBrains
+    Academy</a>
+  time: Wed, 12 Aug 2020 14:07:34 UTC
+record: 3

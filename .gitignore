@@ -1,3 +1,4 @@
 # Default ignored files
-/.idea/
-/Problems
+.idea/
+Problems/
+/Text-Based Browser/task/browser/pages

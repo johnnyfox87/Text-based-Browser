@@ -100,6 +100,8 @@ topics:
   2:
   - title: Computer algorithms
     theory_id: 4953
+  - title: Introducing the first algorithm
+    theory_id: 10336
   - title: The big O notation
     theory_id: 4991
   - title: Data structures

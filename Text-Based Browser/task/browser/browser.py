@@ -1,5 +1,8 @@
 import sys
 import os
+from collections import deque
+
+history = deque()
 
 pages = {
     "nytimes.com": '''
@@ -39,17 +42,21 @@ pages = {
 }
 
 
+def print_page(url):
+    path = directory + "\\" + url[:url.rfind(".")]
+    if os.path.exists(path):
+        with open(path) as file:
+            print(file.read())
+    else:
+        with open(path, "w") as file:
+            file.write(pages[url])
+        print(pages[url])
+
+
 def find_page(url):
-    filename = url[:url.rfind(".")]
     if url in pages:
-        path = directory + "\\" + filename
-        if os.path.exists(path):
-            with open(path) as file:
-                print(file.read())
-        else:
-            with open(path, "w") as file:
-                file.write(pages[url])
-            print(pages[url])
+        history.append(url)
+        print_page(url)
     else:
         print("error: address not found: ", url)
 
@@ -71,7 +78,11 @@ while True:
     if text == "exit":
         break
     text.replace("https://www.", "")
-    if text.find(".") < 0:
+    if text == "back":
+        if len(history) > 1:
+            history.pop()p
+            print_page(history[len(history) - 1])
+    elif text.find(".") < 0:
         print("error: invalid address")
-        continue
-    find_page(text)
+    else:
+        find_page(text)
