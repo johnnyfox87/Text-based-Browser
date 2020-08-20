@@ -1,62 +1,30 @@
-import sys
 import os
+import requests
+import sys
+
 from collections import deque
 
 history = deque()
-
-pages = {
-    "nytimes.com": '''
-    This New Liquid Is Magnetic, and Mesmerizing
-    
-    Scientists have created “soft” magnets that can flow 
-    and change shape, and that could be a boon to medicine 
-    and robotics. (Source: New York Times)
-    
-    
-    Most Wikipedia Profiles Are of Men. This Scientist Is Changing That.
-    
-    Jessica Wade has added nearly 700 Wikipedia biographies for
-     important female and minority scientists in less than two 
-     years.
-    
-    ''',
-
-    "bloomberg.com": '''
-    The Space Race: From Apollo 11 to Elon Musk
-    
-    It's 50 years since the world was gripped by historic images
-     of Apollo 11, and Neil Armstrong -- the first man to walk 
-     on the moon. It was the height of the Cold War, and the charts
-     were filled with David Bowie's Space Oddity, and Creedence's 
-     Bad Moon Rising. The world is a very different place than 
-     it was 5 decades ago. But how has the space race changed since
-     the summer of '69? (Source: Bloomberg)
-    
-    
-    Twitter CEO Jack Dorsey Gives Talk at Apple Headquarters
-    
-    Twitter and Square Chief Executive Officer Jack Dorsey 
-     addressed Apple Inc. employees at the iPhone maker’s headquarters
-     Tuesday, a signal of the strong ties between the Silicon Valley giants.
-    '''
-}
+http_str = "https://www."
 
 
-def print_page(url):
+def print_page(url, text):
     path = directory + "\\" + url[:url.rfind(".")]
     if os.path.exists(path):
         with open(path) as file:
             print(file.read())
     else:
         with open(path, "w") as file:
-            file.write(pages[url])
-        print(pages[url])
+            file.write(text)
+        print(text)
 
 
-def find_page(url):
-    if url in pages:
+def load_page(url):
+    req = http_str + url
+    r = requests.get(req)
+    if r:
         history.append(url)
-        print_page(url)
+        print_page(url, r.text)
     else:
         print("error: address not found: ", url)
 
@@ -72,17 +40,17 @@ else:
     sys.exit()
 
 # Look for website
-text = ""
+input_text = ""
 while True:
-    text = input("URL:")
-    if text == "exit":
+    input_text = input("URL:")
+    if input_text == "exit":
         break
-    text.replace("https://www.", "")
-    if text == "back":
+    input_text.replace(http_str, "")
+    if input_text == "back":
         if len(history) > 1:
-            history.pop()p
+            history.pop()
             print_page(history[len(history) - 1])
-    elif text.find(".") < 0:
+    elif input_text.find(".") < 0:
         print("error: invalid address")
     else:
-        find_page(text)
+        load_page(input_text)
