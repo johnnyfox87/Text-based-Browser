@@ -2,3 +2,4 @@
 .idea/
 Problems/
 /Text-Based Browser/task/browser/pages
+*.pyc

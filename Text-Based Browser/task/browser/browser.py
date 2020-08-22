@@ -2,10 +2,11 @@ import os
 import requests
 import sys
 
+from bs4 import BeautifulSoup
 from collections import deque
 
 history = deque()
-http_str = "https://www."
+http_str = "https://"
 
 
 def print_page(url, text):
@@ -19,12 +20,22 @@ def print_page(url, text):
         print(text)
 
 
+def parse_page(page_request):
+    content = ""
+    soup = BeautifulSoup(page_request.content, 'html.parser')
+    tags = soup.find_all(['p', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'a', 'ul', 'ol', 'li'])
+    for tag in tags:
+        content += tag.text + "/n"
+    return content
+
+
 def load_page(url):
     req = http_str + url
     r = requests.get(req)
     if r:
         history.append(url)
-        print_page(url, r.text)
+        content = parse_page(r)
+        print_page(url, content)
     else:
         print("error: address not found: ", url)
 
