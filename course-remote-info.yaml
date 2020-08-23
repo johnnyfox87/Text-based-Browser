@@ -38,14 +38,14 @@ topics:
     theory_id: 6025
   - title: Naming variables
     theory_id: 5885
-  - title: List
-    theory_id: 5979
   - title: Taking input
     theory_id: 5913
   - title: Program with numbers
     theory_id: 5872
   - title: Comparisons
     theory_id: 5920
+  - title: List
+    theory_id: 5979
   - title: If statement
     theory_id: 5953
   - title: For loop
@@ -61,6 +61,8 @@ topics:
     theory_id: 6224
   - title: Escape sequences
     theory_id: 7130
+  - title: String formatting
+    theory_id: 6037
   - title: Indexes
     theory_id: 6189
   - title: Invoking a function
@@ -71,8 +73,6 @@ topics:
     theory_id: 7248
   - title: Operations with list
     theory_id: 6031
-  - title: String formatting
-    theory_id: 6037
   - title: Basic string methods
     theory_id: 6842
   - title: Split and join

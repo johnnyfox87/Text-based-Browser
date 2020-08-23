@@ -1,9 +1,13 @@
 import os
-import requests
 import sys
-
-from bs4 import BeautifulSoup
 from collections import deque
+
+import requests
+from bs4 import BeautifulSoup
+from colorama import init
+from colorama import Fore, Back, Style
+
+init()
 
 history = deque()
 http_str = "https://"
@@ -13,11 +17,11 @@ def print_page(url, text):
     path = directory + "\\" + url[:url.rfind(".")]
     if os.path.exists(path):
         with open(path) as file:
-            print(file.read())
+            print(Fore.RED + file.read())
     else:
         with open(path, "w") as file:
             file.write(text)
-        print(text)
+    print(text)
 
 
 def parse_page(page_request):
@@ -25,7 +29,10 @@ def parse_page(page_request):
     soup = BeautifulSoup(page_request.content, 'html.parser')
     tags = soup.find_all(['p', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'a', 'ul', 'ol', 'li'])
     for tag in tags:
+        if tag.find('a') is not None:
+            content += Fore.BLUE
         content += tag.text + "/n"
+        content += Fore.BLACK
     return content
 
 
